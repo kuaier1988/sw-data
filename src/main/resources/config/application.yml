@@ -1,0 +1,22 @@
+# 指定系统的根url
+server:
+  port : 8080
+#  servlet: 
+#    contextpath: /sw-web
+# 程序运行模式
+debug: true
+# 数据库连接信息配置
+spring: 
+  datasource:https://github.com/kuaier1988/sw-data.git
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3362/test
+    username: root
+    password: root
+    
+db : 
+  type : mysql
+mybatis:
+  mapper-locations: classpath:config/mybatis/mapper/*.xml
+  type-aliases-package: com.xuanyu.sw
+
+  

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xuanyu.sw.mapper.DataRealTimeCjMapper">
+	
+	<insert id="insert" parameterType="com.xuanyu.sw.entity.DataRealTimeCj">
+		insert into datarealtime_cj(zd_code,zd_name,zd_type,zd_type_name,zd_shuiwei,zd_shuiwei_type,zd_date,zd_des)
+		values (#{zd_code},#{zd_name},1,'长江',#{zd_shuiwei},#{zd_shuiwei_type},#{zd_date},#{zd_des})
+	</insert>
+	
+	<insert id="insertByBatch" parameterType="java.util.List">
+		insert into datarealtime_cj (zd_code,zd_name,zd_type,zd_type_name,zd_shuiwei,zd_shuiwei_type,zd_date,zd_des)
+        values
+        <foreach collection="list" item="item" index="index" separator=",">
+            (#{item.zd_code},#{item.zd_name},1,'长江',#{item.zd_shuiwei},#{item.zd_shuiwei_type},#{item.zd_date},#{item.zd_des})
+        </foreach>
+	</insert>
+	
+	<delete id="deleteData">
+	delete from datarealtime_cj
+	</delete>
+	
+	<insert id="insertLog" parameterType="com.xuanyu.sw.entity.DataRealTimeCj">
+		insert into datarealtime_cj_log(zd_code,zd_name,zd_type,zd_type_name,zd_shuiwei,zd_shuiwei_type,zd_date,zd_des)
+		values (#{zd_code},#{zd_name},1,'长江',#{zd_shuiwei},#{zd_shuiwei_type},#{zd_date},#{zd_des})
+	</insert>
+	<insert id="insertLogByBatch" parameterType="java.util.List">
+		insert into datarealtime_cj_log (zd_code,zd_name,zd_type,zd_type_name,zd_shuiwei,zd_shuiwei_type,zd_date,zd_des)
+        values
+        <foreach collection="list" item="item" index="index" separator=",">
+            (#{item.zd_code},#{item.zd_name},1,'长江',#{item.zd_shuiwei},#{item.zd_shuiwei_type},#{item.zd_date},#{item.zd_des})
+        </foreach>
+	</insert>
+	
+</mapper>

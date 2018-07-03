@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<appenders>
+		<Console name="Console" target="SYSTEM_OUT">
+			<PatternLayout
+				pattern="%d{HH:mm:ss.SSS} %-5level %class{36} %L %M - %msg%xEx%n" />
+		</Console>
+		<RollingFile name="RollingFile" fileName="logs/sw-data.log"
+			filePattern="logs/$${date:yyyy-MM}/app-%d{MM-dd-yyyy}-%i.log">
+			<PatternLayout
+				pattern="%d{yyyy-MM-dd 'at' HH:mm:ss z} %-5level %class{36} %L %M - %msg%xEx%n" />
+			<SizeBasedTriggeringPolicy size="50MB" />
+		</RollingFile>
+
+		<RollingFile name="ERROR_ROLLING_FILE" fileName="logs/error.logs"
+			filePattern="logs/%d{yyyy-MM-dd}-error.log">
+			<!-- 可以通过该参数来设置获取日志的权限 -->
+			<ThresholdFilter level="error" onMatch="ACCEPT"
+				onMismatch="DENY" />
+			<PatternLayout pattern="%d [%t] %-5p [%c] - %m%n" />
+			<SizeBasedTriggeringPolicy size="50MB" />
+		</RollingFile>
+	</appenders>
+
+	<loggers>
+		<root level="info">
+			<appender-ref ref="RollingFile" />
+			<appender-ref ref="ERROR_ROLLING_FILE"/>
+			<appender-ref ref="Console" />
+		</root>
+	</loggers>
+</configuration>
